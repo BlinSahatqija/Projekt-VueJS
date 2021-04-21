@@ -13,3 +13,21 @@ const config = {
     appId: "1:973407722910:web:c2b1080ab61fb258058a8f",
     measurementId: "G-CXKG7QEBGV"
 };
+
+firebase.initializeApp(config);
+
+firebase.firestore().settings(settings);
+firebase.auth().onAuthStateChanged(user=>{
+    store.dispatch("fetchUser", user);
+});
+
+firebase.getCurrentUser = ()=>{
+    return new Promise((resolve,reject)=>{
+        const unsubscribe = firebase.auth().onAuthStateChanged(user=>{
+            unsubscribe();
+            resolve(user);
+        },reject);
+    })
+};
+
+export default firebase;
