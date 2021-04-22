@@ -18,7 +18,7 @@
                   value
                   required
                   autofocus
-                  >
+                  v-model="form.name">
 
                   <label for="email"><b>Email</b></label>
                   <input id="email"
@@ -27,14 +27,14 @@
                   value
                   required
                   autofocus
-                  >
+                  v-model="form.email">
 
                   <label for="password"><b>Password</b></label>
                   <input id="password"
                   type="password"
                   name="password"
                   required
-                  >
+                  v-model="form.password">
 
                   <button type="submit">Register</button>
                 </div>            
@@ -45,3 +45,42 @@
     </div>
   </div>
 </template>
+
+<script>
+/* eslint-disable*/
+import firebase from "firebase";
+
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        email: "",
+        password: ""
+      },
+      error: null,
+      avatar:"https://www.w3schools.com/howto/img_avatar2.png"
+    };
+  },
+  methods: {
+    submit() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.form.email, this.form.password)
+        .then(data => {
+          data.user
+            .updateProfile({
+              displayName: this.form.name
+            })
+             .then(data => {
+              this.$router.push({name: 'home',})
+            })
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
+    }
+  }
+};
+</script>
+<style scoped src="@/assets/style.css"></style>
