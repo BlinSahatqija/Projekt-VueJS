@@ -41,7 +41,7 @@
               <a class="nav-link">{{ user.data.displayName }}</a>
             </b-nav-item>
             <b-nav-item>
-              <a class="nav-link" >Log out</a>
+              <a class="nav-link" @click.prevent="signOut">Log out</a>
             </b-nav-item>
           </template>
           <template v-else>
@@ -56,7 +56,7 @@
             <b-button size="sm" class="my-2 my-sm-0" @click="darkThemeSwitch">DarkMode</b-button>
           </b-nav-form> -->
           <b-nav-item-dropdown text="Settings" right style="margin-top:7px">
-            <b-dropdown-item id="mode" >DarkMode</b-dropdown-item>
+            <b-dropdown-item id="mode" @click="darkThemeSwitch">DarkMode</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -66,5 +66,36 @@
 
 
 <script>
-
+import themeChanger from "../theme.js";
+import { mapGetters } from 'vuex' // per shkak se nuk e din ka pe na vjen qajo loggedIn
+import firebase from 'firebase'
+export default {
+  data(){
+    return{
+      themeChanger: null,
+    }
+  },
+  computed:{
+    ...mapGetters({
+      user:'user'
+    }),
+  },
+  methods:{
+    darkThemeSwitch() {
+      this.themeChanger._darkThemeSwitch();
+    },
+    signOut(){
+      firebase
+      .auth()
+      .signOut()
+      .then(()=>{
+        this.$router.replace({
+          name: 'home'
+        });
+      });
+    } 
+  },created() {
+    this.themeChanger = new themeChanger();
+  },
+}
 </script>
