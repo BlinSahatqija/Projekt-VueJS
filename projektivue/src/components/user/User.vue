@@ -23,3 +23,46 @@
     </table>
   </div>
 </template>
+
+<script>
+/* eslint-disable */
+import axios from 'axios';
+  export default {
+    name: 'ShowContacts',
+      data(){
+        return{
+          contacts:{}
+        }
+      },
+      created () {
+      axios.get(`http://localhost:4000/contacts/`)
+        .then(response => {
+          this.contacts = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+      },
+      methods: {
+        editcontact(contactid){
+          this.$router.push({
+          name: 'useredit',
+          params: { id: contactid }
+        })
+      },
+        deletecontact(contactid){
+          axios.delete('http://localhost:4000/contacts/' + contactid)
+          .then((result) => {
+            //refresh on same page
+            this.$router.go({
+              
+            })
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      }
+    }
+  }
+
+</script>
