@@ -30,3 +30,46 @@
     </div>
   </div>
 </template>
+
+<script>
+/* eslint-disable */
+import axios from 'axios'
+
+export default {
+  name: 'EditContacts',
+  data () {
+    return {
+      contacts: {}
+    }
+  },
+  created () {
+    axios.get(`http://localhost:4000/contacts/` + this.$route.params.id)
+    .then(response => {
+      this.contacts = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
+  methods: {
+    onSubmit () {
+      axios.put(`http://localhost:4000/contacts/` + this.$route.params.id, this.contacts)
+      .then(response => {
+        this.$router.push({
+          name: 'user',
+          //params: { id: this.$route.params.id }
+        })
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
+    }
+  }
+}
+</script>
+<style scoped>
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+</style>
