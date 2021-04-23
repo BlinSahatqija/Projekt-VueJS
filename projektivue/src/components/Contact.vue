@@ -6,16 +6,16 @@
     </div>
     <div class="row">
       <div class="column">
-        <img  style="width:100%">
+        <img :src="contactphoto" style="width:100%">
       </div>
       <div class="column">
         <form @submit="onSubmit">
             <label>First Name</label>
-            <input type="text" id="fname" name="name" placeholder="Your name..">
+            <input type="text" id="fname" name="name" placeholder="Your name.." v-model="contacts.name">
             <label>Last Name</label>
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <input type="text" id="lname" name="lastname" placeholder="Your last name.." v-model="contacts.lastname">
             <label >Country</label>
-              <select id="country" name="country" >
+              <select id="country" name="country" v-model="contacts.country">
                 <option value="australia">Australia</option>
                 <option value="canada">Canada</option>
                 <option value="usa">USA</option>
@@ -23,7 +23,7 @@
                 <option value="albania">Albania</option>
               </select>
             <label for="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." rows="6" ></textarea>
+            <textarea id="subject" name="subject" placeholder="Write something.." rows="6" v-model="contacts.description"></textarea>
             <input type="submit" value="Submit">
         </form>
       </div>
@@ -32,6 +32,28 @@
 </template>
 
 <script>
+/* eslint-disable */
+import axios from 'axios'
+import router from '@/router'
+export default {
+  name: 'CreateContacts',
+  data () {
+    return {
+      contactphoto: "https://www.w3schools.com/w3images/map.jpg",
+      contacts:{},
+    }
+  },
+  methods: {
+    onSubmit () {     
+      axios.post(`http://localhost:4000/contacts`, this.contacts)
+      .then(response => {
+        router.push({
+          name: 'home',
+        })
+      })      
+    }
+  }
+}
 </script>
 
 <style scoped>
