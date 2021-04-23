@@ -13,15 +13,15 @@
     </div>
     <div class="row">
       <div class="container card col-12 col-sm-12 col-md-4 col-lg-3" style="width: 18rem; margin-bottom:20px" 
-       >
-        <img class="card-img-top"  alt="Card image cap">
+        v-for="job in jobfields" :key="job._id">
+        <img class="card-img-top" :src="photo" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title" style="font-weight:600"></h5>
-          <p class="card-text"></p>
+          <h5 class="card-title" style="font-weight:600">{{ job.title }}</h5>
+          <p class="card-text">{{ job.description }}</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><em>Category: </em> </li>
-          <li class="list-group-item"><em>City: </em></li>
+          <li class="list-group-item"><em>Category: </em> {{ job.category }}</li>
+          <li class="list-group-item"><em>City: </em>{{ job.city }}</li>
         </ul>
       </div>
     </div> 
@@ -30,6 +30,36 @@
 
 <script>
 
+/* eslint-disable */
+import axios from 'axios'
+export default {
+  name: 'CreateJobs',
+  data () {
+    return {
+      photo:"https://banner2.cleanpng.com/20180529/osf/kisspng-job-hunting-intern-employment-website-cover-letter-job-search-5b0d9f89959ea1.4692299715276194656129.jpg",
+      jobfields:{},
+      jobs: {}
+    }
+  },created () {
+    axios.get(`http://localhost:4000/jobs`)
+    .then(response => {
+      this.jobfields = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
+  // methods: {
+  //   onSubmit (evt) {
+  //     evt.preventDefault()
+  //     axios.post(`http://localhost:4000/jobs`, this.jobs)
+  //     .then(function (response) {
+  //       console.log(response);
+  //       })
+      
+  //   }
+  // }
+}
 </script>
 <style scoped>
   .main-banner{
