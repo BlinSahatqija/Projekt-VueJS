@@ -6,6 +6,7 @@ const ContactsSchema = mongoose.Schema({
     lastname: String,
     country: String,
     description: String,
+    updated_date:{ type:Date, default:Date.now },
 });
 
 module.exports = mongoose.model('Contacts', ContactsSchema);
