@@ -5,6 +5,7 @@ const JobsSchema = mongoose.Schema({
     title: String,
     category: String,
     city: String,
+    description: String,
     updated_date:{ type:Date, default:Date.now },
 });
 
