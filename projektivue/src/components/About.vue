@@ -7,7 +7,7 @@
     </div>
     <h2>Our Team</h2>
     <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card">
           <img src="../assets/genat.jpg" alt="Genat" style="width:100%">
           <div class="container">
@@ -22,14 +22,32 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card">
           <img src="../assets/blin.jpg" alt="Blin" style="width:100%">
           <div class="container">
             <h2>Blin Sahatqija</h2>
             <p class="title">CEO & Founder</p>
-            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+               <p>I am a young professional with enterprise aiming to continue my development as a programmer. I have great
+                knowledge in some programming languages like Java, Python and C #. In terms of results and objectives, I am
+                enthusiastic and work with determination and conviction. I have a proactive attitude and find positive ways to
+                stimulate and engage with people.</p>
             <p>bs45605@ubt-uni.net</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+          <img src="../assets/titan.jpg" alt="Titan" style="width:100%">
+          <div class="container">
+            <h2>Titan Shala</h2>
+            <p class="title">CEO & Founder</p>
+               <p>I am a young professional with enterprise aiming to continue my development as a programmer. I have great
+                knowledge in some programming languages like Java, Python and C #. In terms of results and objectives, I am
+                enthusiastic and work with determination and conviction. I have a proactive attitude and find positive ways to
+                stimulate and engage with people.</p>
+            <p>ts44423@ubt-uni.net</p>
             <p><button class="button">Contact</button></p>
           </div>
         </div>
