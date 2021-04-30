@@ -12,14 +12,49 @@ import router from './index'
 
 export default new VueRouter({
     routes:[
-        {path:'/', name:'home', component: Home},
-        {path:'/about', name:'about', component: About},
-        {path:'/contact', name:'contact', component: Contact},
-        {path:'/user', name:'user', component: User, meta: { requiresAuth: true }},
-        {path:'/useredit', name:'useredit', component: UserEdit, meta: { requiresAuth: true }},
-        {path:'/addjobs', name:'addjobs', component: AddJobs, meta: { requiresAuth: true }},
-        {path:'/login', name:'login', component: Login},
-        {path:'/register', name:'register', component: Register},
+        {
+            path:'/', 
+            name:'home', 
+            component: Home
+        },
+        {
+            path:'/about', 
+            name:'about', 
+            component: About
+        },
+        {
+            path:'/contact', 
+            name:'contact', 
+            component: Contact
+        },
+        {
+            path:'/user', 
+            name:'user', 
+            component: User, 
+            meta: { requiresAuth: true }
+        },
+        {
+            path:'/useredit', 
+            name:'useredit', 
+            component: UserEdit, 
+            meta: { requiresAuth: true }
+        },
+        {
+            path:'/addjobs', 
+            name:'addjobs', 
+            component: AddJobs, 
+            meta: { requiresAuth: true }
+        },
+        {
+            path:'/login', 
+            name:'login', 
+            component: Login
+        },
+        {
+            path:'/register', 
+            name:'register', 
+            component: Register
+        },
     ]
 })
 
